@@ -1,34 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="templates/scripts/script.js"></script>
     <title>Jadwal Kegiatan</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #007BFF;
-            color: white;
-        }
-    </style>
-    <link rel="stylesheet" type="text/css" href="templates/jadwal2.css">
+    <link rel="stylesheet" type="text/css" href="templates/css/jadwal.css">
 </head>
 <body>
     <header>
         <h1>Jadwal Kegiatan Dokter</h1>
     </header>
-
+    <div class="navbarr">
+        <div class="menu-icon" id="menu-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="menu-list" id="menu-list">
+            <li><a href="/">HOME</a></li>
+            <li><a href="about">ABOUT US</a></li>
+            <li><a href="jadwal">FIND DOCTOR</a></li>
+            <li><a href="reservasi">BOOK APPOINTMENT</a></li>
+        </ul>
+    </div>
     <section class="schedule">
         {{range .data}}
         <div class="card">
@@ -45,11 +38,12 @@
                     {{range .JadwalDokter}}
                     <tr>
                         <td>{{.Hari_Praktek}}</td>
-                        <td>{{.JamMulai}}</td>
-                        <td>{{.JamSelesai}}</td>
+                        <td>{{if .JamMulai}}{{.JamMulai}}{{else}}-{{end}}</td>
+                        <td>{{if .JamSelesai}}{{.JamSelesai}}{{else}}-{{end}}</td>
                     </tr>
                     {{end}}
                 </table>
+				<a href="reservasi" class="btn">Reservasi</button></a>
             </div>
         </div>
         {{end}}
