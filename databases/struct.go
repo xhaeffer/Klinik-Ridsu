@@ -16,10 +16,10 @@ type Reservasi struct {
 type ProfilDokter struct {
 	IdDokter      int    `gorm:"primaryKey" json:"id_dokter"`
 	Nama          string `gorm:"column:nama_dokter" json:"nama_dokter"`
-	Spesialisasi  string `gorm:"column:spesialisasi" json:"spesialisasi"`
+	Poli		  string `gorm:"column:poli" json:"poli"`
 	Gambar        []byte `gorm:"column:foto_dokter" json:"-"`
-	EncodedGambar string
-	JadwalDokter  []JadwalDokter `gorm:"foreignKey:IdDokter"`
+	EncodedGambar string `json:"-"`
+	JadwalDokter  []JadwalDokter `gorm:"foreignKey:IdDokter" json:"JadwalDokter"`
 }
 
 type JadwalDokter struct {

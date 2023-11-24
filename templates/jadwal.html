@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="templates/scripts/script.js"></script>
+    <script src="templates/scripts/hamburg_menu.js"></script>
     <title>Jadwal Kegiatan</title>
     <link rel="stylesheet" type="text/css" href="templates/css/jadwal.css">
 </head>
@@ -26,7 +26,7 @@
         {{range .data}}
         <div class="card">
             <h2>{{.Nama}}</h2>
-            <h3>Spesialisasi: {{.Spesialisasi}}</h3>
+            <h3>Poli: {{.Poli}}</h3>
             <div class="event">
                 <img src="data:image/png;base64,{{.EncodedGambar}}" width="300">
                 <table>

@@ -32,7 +32,7 @@ func Reservasi (r *gin.Engine, db *gorm.DB) {
 		}
 	})
 
-	r.GET("/reservasi/:start/:end", func(c *gin.Context) {
+	r.GET("/reservasi/api/byID/:start/:end", func(c *gin.Context) {
 		start := c.Param("start")
 		end := c.Param("end")
 

@@ -13,10 +13,10 @@ func init() {
 
 func Routes(r *gin.Engine, db *gorm.DB) {
 	routes.Auth(r)
-	routes.Index(r, db)
-	routes.Reservasi(r, db)
+	routes.Index(r)
+	routes.About(r)
 	routes.Jadwal(r, db)
-	routes.About(r, db)
+	routes.Reservasi(r, db)
 }
 
 func main() {
