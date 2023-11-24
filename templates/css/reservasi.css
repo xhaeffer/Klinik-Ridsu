@@ -1,12 +1,11 @@
-body{
+body {
     font-family: 'Poppins', sans-serif;
-    padding: 0px;
-    margin: 0px;
-    background-color:#e4f0f5;
-    
+    padding: 0;
+    margin: 0;
+    background-color: #e4f0f5;
 }
 
-.isi h1{
+.isi h1 {
     text-align: center;
     color: #858585;
 }
@@ -25,7 +24,7 @@ body{
 
 .menu-icon {
     cursor: pointer;
-    z-index: 1001; /* Z-index lebih tinggi dari navbar */
+    z-index: 1001;
 }
 
 .bar {
@@ -47,11 +46,11 @@ body{
     top: 60px;
     left: 0;
     height: 100vh;
-    width: 250px; /* Lebar menu */
+    width: 250px;
     background-color: #3F72AF;
     box-shadow: 0 4px 8px rgba(203, 40, 40, 0.1);
     transform: translateX(-100%);
-    z-index: 1000; /* Z-index sama dengan navbar */
+    z-index: 1000;
 }
 
 .menu-list.show {
@@ -73,7 +72,7 @@ body{
 
 .content {
     padding: 20px;
-    margin-left: 250px; /* Sesuaikan dengan lebar menu */
+    margin-left: 250px;
     transition: margin-left 0.5s;
 }
 
@@ -83,72 +82,67 @@ body{
     }
 }
 
-
-
-.navbar{
+.navbar {
     background-color: rgb(70, 102, 156);
     padding: 30px 30px;
     display: flex;
     align-items: center;
     position: fixed;
-    top:0%;
+    top: 0;
     width: 100%;
     z-index: 1;
-    
 }
 
-.nav-header{
+.nav-header {
     font-weight: bold;
     font-size: 40px;
 }
 
-.nav-header a{
+.nav-header a {
     text-decoration: none;
     color: #eff1f7;
-   
 }
 
-.navbar .nav-items ul{
+.navbar .nav-items ul {
     display: flex;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     list-style-type: none;
     margin-left: 500px;
-    
-
 }
 
-.tbl-biru{
-    background-color:#3d57ef;
+.tbl-biru {
+    background-color: #34ac70;
     text-decoration: none;
     padding: 20px 60px;
     border-radius: 5px;
-    color: rgb(234, 234, 234);
+    color: #fff;
     font-weight: bold;
-    transition: 0,4s;
+    transition: 0.4s;
     margin: 20px;
     margin-left: 260px;
-    
 }
 
-.tbl-biru:hover{
-    background-color: #368fe7;
+.tbl-biru:hover {
+    background-color: #64646d;
     border-radius: 8px;
 }
-.isi{
-padding-top: 120px;
 
+.isi {
+    padding-top: 120px;
 }
+
 input,
 textarea,
-label{
-	display: block;
-	width: 60%;
-	padding: 20px;
-	border-radius: 9px;
+label {
+    display: block;
+    width: 60%;
+    padding: 20px;
+    border-radius: 9px;
     margin-left: 260px;
 }
-select{
+
+select {
     width: 63%;
     padding: 23px;
     margin-left: 260px;

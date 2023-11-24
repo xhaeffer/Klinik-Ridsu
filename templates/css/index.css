@@ -106,7 +106,7 @@ body {
 }
 
 .btn {
-    background-color: #5386e6; /* Warna latar belakang tombol */
+    background-color: #34ac70; /* Warna latar belakang tombol */
     color: white; /* Warna teks tombol */
     padding: 15px 25px;
     text-decoration: none;
@@ -120,7 +120,7 @@ body {
 }
 
 .btn:hover {
-    background-color: #112D4E; /* Warna latar belakang tombol saat dihover */
+    background-color: #34ac70; /* Warna latar belakang tombol saat dihover */
     border-radius: 7px;
 }
 
