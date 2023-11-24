@@ -35,8 +35,18 @@ func LoginHandler(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate token"})
 		return
 	}
-	c.SetCookie("token", token, 3600, "/", "localhost", false, true)
-	c.JSON(http.StatusOK, gin.H{"message": "Login successful"})
+
+	tokenString, ok := token["token"].(string)
+	if !ok {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get token string"})
+		return
+	}
+
+	c.SetCookie("token", tokenString, 3600, "/", "localhost", false, true)
+	c.JSON(http.StatusOK, gin.H{
+		"message":    "Login successful",
+		"token": token,
+	})
 }
 
 func LogoutHandler(c *gin.Context) {

@@ -20,21 +20,36 @@ var (
 	ErrTokenInvalid = errors.New("invalid JWT token")
 )
 
-// GenerateToken menghasilkan token JWT baru
-func GenerateToken() (string, error) {
-	token := jwt.New(jwt.SigningMethodHS256)
-	claims := token.Claims.(jwt.MapClaims)
+// GenerateTokenWithInfo generates a JWT token with expiration information
+func GenerateToken() (map[string]interface{}, error) {
+    token := jwt.New(jwt.SigningMethodHS256)
+    claims := token.Claims.(jwt.MapClaims)
 
-	claims["exp"] = time.Now().Add(time.Hour * 24).Unix() // Waktu kedaluwarsa token (1 hari)
-	// Tambahkan klaim lebih banyak sesuai kebutuhan
+    // Set expiration time for the token (1 day)
+    expirationTime := time.Now().Add(time.Hour * 24)
+    claims["exp"] = expirationTime.Unix()
 
-	tokenString, err := token.SignedString(secretKey)
-	if err != nil {
-		return "", err
-	}
+    // Add more claims as needed
 
-	return tokenString, nil
+    // Sign and get the signed token string
+    tokenString, err := token.SignedString(secretKey)
+    if err != nil {
+        return nil, err
+    }
+
+    // Calculate the remaining time until expiration using time.Until
+    expiresIn := time.Until(expirationTime)
+
+    // Information to be returned along with the token
+    additionalInfo := map[string]interface{}{
+        "token":       tokenString,
+        "expires_in":  expiresIn.String(), // Format the duration as a string
+        "user_id":     "admin",
+    }
+
+    return additionalInfo, nil
 }
+
 
 // VerifyToken memverifikasi token JWT
 func VerifyToken(c *gin.Context) error {
