@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 	"projek1/databases"
-	"projek1/api"
+	"projek1/jwt"
 )
 
 func Reservasi (r *gin.Engine, db *gorm.DB) {

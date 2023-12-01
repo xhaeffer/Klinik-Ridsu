@@ -12,7 +12,8 @@ func init() {
 }
 
 func Routes(r *gin.Engine, db *gorm.DB) {
-	routes.Auth(r)
+	routes.Login(r, db)
+	routes.Register(r, db)
 	routes.Index(r)
 	routes.About(r)
 	routes.Jadwal(r, db)

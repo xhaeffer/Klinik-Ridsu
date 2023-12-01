@@ -30,6 +30,12 @@ type JadwalDokter struct {
 	JamSelesai   string `gorm:"column:jam_selesai" json:"jam_selesai"`
 }
 
+type User struct {
+	NoRS     int `gorm:"primaryKey;autoIncrement" json:"no_rs"`
+	NIK      string    `gorm:"column:nik" json:"nik"`
+	Password string `gorm:"column:password" json:"-"`
+}
+
 func (Reservasi) TableName() string {
 	return "reservasi"
 }
@@ -40,4 +46,8 @@ func (ProfilDokter) TableName() string {
 
 func (JadwalDokter) TableName() string {
 	return "jadwal_dokter"
+}
+
+func (User) TableName() string {
+	return "akun_user"
 }

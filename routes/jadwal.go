@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 	"projek1/databases"
-	//"projek1/api" 
+	"projek1/jwt" 
 )
 
 func Jadwal (r *gin.Engine, db *gorm.DB) {
@@ -27,14 +27,14 @@ func Jadwal (r *gin.Engine, db *gorm.DB) {
 	r.GET("/jadwal/api/byID/:id", func(c *gin.Context) {
 		start := c.Param("id")
 	
-		// if err := jwt.VerifyToken(c); err != nil {
-		// 	if err == jwt.ErrMissingToken {
-		// 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak ditemukan"})
-		// 	} else {
-		// 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak valid"})
-		// 	}
-		// 	return
-		// }
+		if err := jwt.VerifyToken(c); err != nil {
+			if err == jwt.ErrMissingToken {
+				c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak ditemukan"})
+			} else {
+				c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak valid"})
+			}
+			return
+		}
 	
 		var data []databases.ProfilDokter
 		startID, _ := strconv.Atoi(start)
@@ -89,14 +89,14 @@ func Jadwal (r *gin.Engine, db *gorm.DB) {
 	r.GET("/jadwal/api/byPoli/:poli", func(c *gin.Context) {
 		poli := c.Param("poli")
 
-		// if err := jwt.VerifyToken(c); err != nil {
-		// 	if err == jwt.ErrMissingToken {
-		// 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak ditemukan"})
-		// 	} else {
-		// 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak valid"})
-		// 	}
-		// 	return
-		// }
+		if err := jwt.VerifyToken(c); err != nil {
+			if err == jwt.ErrMissingToken {
+				c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak ditemukan"})
+			} else {
+				c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak valid"})
+			}
+			return
+		}
 		
 		var data []databases.ProfilDokter
 		if err := db.Preload("JadwalDokter").Where("poli = ?", poli).Find(&data).Error; err != nil {
@@ -110,14 +110,14 @@ func Jadwal (r *gin.Engine, db *gorm.DB) {
 
 	r.GET("/jadwal/api/getPoli", func(c *gin.Context) {
 
-		// if err := jwt.VerifyToken(c); err != nil {
-		// 	if err == jwt.ErrMissingToken {
-		// 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak ditemukan"})
-		// 	} else {
-		// 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak valid"})
-		// 	}
-		// 	return
-		// }
+		if err := jwt.VerifyToken(c); err != nil {
+			if err == jwt.ErrMissingToken {
+				c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak ditemukan"})
+			} else {
+				c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak valid"})
+			}
+			return
+		}
 
 		var poliList []string
 	
