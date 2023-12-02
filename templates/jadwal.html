@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="templates/scripts/hamburg_menu.js"></script>
     <title>Jadwal Kegiatan</title>
     <link rel="stylesheet" type="text/css" href="templates/css/jadwal.css">
+    <link rel="stylesheet" type="text/css" href="templates/css/navbar.css">
+    <script src="templates/scripts/jadwal.js"></script>
+    <script src="templates/scripts/hamburg_menu.js"></script>
+
 </head>
 <body>
     <header>
@@ -19,7 +22,12 @@
             <li><a href="/">HOME</a></li>
             <li><a href="about">ABOUT US</a></li>
             <li><a href="jadwal">FIND DOCTOR</a></li>
-            <li><a href="reservasi">BOOK APPOINTMENT</a></li>
+            <li><a href="#">APPOINTMENT</a>
+                <ul class="submenu">
+                    <li><a href="reservasi">BOOK APPOINTMENT</a></li>
+                    <li><a href="cekreservasi">CHECK APPOINTMENT</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
     <section class="schedule">
@@ -43,7 +51,7 @@
                     </tr>
                     {{end}}
                 </table>
-				<a href="reservasi" class="btn">Reservasi</button></a>
+				<a href="reservasi?nama={{.Nama}}&poli={{.Poli}}" class="btn">Reservasi</a>
             </div>
         </div>
         {{end}}

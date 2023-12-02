@@ -5,11 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Rumah Sakit XYZ</title>
     <link rel="stylesheet" type="text/css" href="templates/css/register.css">
+    <script src="templates/scripts/hamburg_menu.js"></script>
+    <link rel="stylesheet" type="text/css" href="templates/css/navbar.css">
 </head>
 <body>
     <header>
         <h1>Klinik RIDSU</h1>
     </header>
+    <div class="navbarr">
+        <div class="menu-icon" id="menu-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="menu-list" id="menu-list">
+            <li><a href="/">HOME</a></li>
+            <li><a href="about">ABOUT US</a></li>
+            <li><a href="jadwal">FIND DOCTOR</a></li>
+            <li><a href="#">APPOINTMENT</a>
+                <ul class="submenu">
+                    <li><a href="reservasi">BOOK APPOINTMENT</a></li>
+                    <li><a href="cekreservasi">CHECK APPOINTMENT</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
     <div class="register-container">
         <h2>Register</h2>
         <form class="register-form" action="/register" method="post">

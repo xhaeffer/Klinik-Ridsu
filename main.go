@@ -18,6 +18,7 @@ func Routes(r *gin.Engine, db *gorm.DB) {
 	routes.About(r)
 	routes.Jadwal(r, db)
 	routes.Reservasi(r, db)
+	routes.CekReservasi(r, db)
 }
 
 func main() {

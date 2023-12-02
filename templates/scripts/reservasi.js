@@ -1,7 +1,25 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const resetButton = document.querySelector('.tbl-merah');
+
+    resetButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Menghentikan aksi default tombol submit
+
+        // Tampilkan alert konfirmasi
+        const isConfirmed = confirm("Apakah Anda yakin ingin menghapus formulir?");
+
+        // Jika dikonfirmasi, reset formulir
+        if (isConfirmed) {
+            const form = document.querySelector('form');
+            form.reset();
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
     const poliDropdown = document.getElementById('poliDropdown');
     const dokterDropdown = document.getElementById('dokterDropdown');
     const tanggalKunjungan = document.getElementById('tanggalKunjungan');
+    const identitasDokter = document.getElementById('doctorCard');
 
     let jadwalDokter;
 
@@ -48,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Ambil data jadwal dokter dari API
                     fetch(`/jadwal/api/byID/${selectedDokterId}`)
                         .then(response => response.json())
-                        .then(data => {
+                        .then(data => {                            
                             const jadwalKerja = data[0].JadwalDokter;
                             const hariKerja = jadwalKerja.map(jadwal => jadwal.hari);
                             const hariIndex = {
@@ -60,6 +78,23 @@ document.addEventListener('DOMContentLoaded', function () {
                                 'Jumat': 5,
                                 'Sabtu': 6,
                             };
+                            identitasDokter.querySelector('h2').textContent = data[0].nama_dokter;
+                            identitasDokter.querySelector('h3').textContent = `Poli: ${data[0].poli}`;
+                            identitasDokter.querySelector('img').src = `data:image/png;base64,${data[0].gambar}`;
+        
+                            // Bersihkan tabel jadwal sebelum menambahkan data baru
+                            const jadwalTable = identitasDokter.querySelector('table');
+                            jadwalTable.innerHTML = '<tr><th>Hari</th><th>Jam Mulai</th><th>Jam Selesai</th></tr>';
+        
+                            // Tambahkan baris baru untuk setiap jadwal dokter
+                            data[0].JadwalDokter.forEach(jadwal => {
+                                const row = document.createElement('tr');
+                                row.innerHTML = `<td>${jadwal.hari}</td><td>${jadwal.jam_mulai || '-'}</td><td>${jadwal.jam_selesai || '-'}</td>`;
+                                jadwalTable.appendChild(row);
+                            });
+        
+                            // Tampilkan identitasDokter
+                            identitasDokter.style.display = 'block';
 
                             const indeksAwal = hariIndex[hariKerja[0]];
                             const indeksAkhir = hariIndex[hariKerja[hariKerja.length - 1]];                            
@@ -70,8 +105,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             const tanggalAwal = new Date();
                             tanggalAwal.setDate(tanggalAwal.getDate() + (indeksAwal - tanggalAwal.getDay() + 7) % 7);
 
-                            const tanggalAkhir = new Date();
-                            tanggalAkhir.setDate(tanggalAwal.getDate() + (indeksAkhir - indeksAwal + 7) % 7);
+                            const tanggalAkhir = new Date(tanggalAwal);
+                            tanggalAkhir.setDate(tanggalAwal.getDate() + 30);
 
                             if (!isNaN(tanggalAwal) && !isNaN(tanggalAkhir)) {
                                 tanggalKunjungan.min = tanggalAwal.toISOString().split('T')[0];
@@ -97,6 +132,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                     alert(`Dokter tidak praktek pada hari ${dayOfWeek}. Silakan pilih tanggal lain.`);
                                     tanggalKunjungan.value = '';
                                 }
+                                
+                           
                             });
                         })
 
@@ -104,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         .catch(error => {
                             console.error('Error fetching data:', error);
                         });
-                });
+                });       
 
                 function isHariKerja(tanggal, dokterId, jadwalDokter) {
                     if (jadwalDokter) {
@@ -174,4 +211,5 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => console.error('Error fetching dokter:', error));
     });
+
 });

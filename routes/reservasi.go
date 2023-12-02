@@ -11,11 +11,29 @@ import (
 
 func Reservasi (r *gin.Engine, db *gorm.DB) {
 	r.GET("/reservasi", func(c *gin.Context) {
+		if err := jwt.VerifyToken(c); err != nil {
+			if err == jwt.ErrMissingToken {
+				c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak ditemukan, Silahkan Login terlebih dahulu!"})
+				return
+			} else {
+				c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak valid, Silahkan login ulang!"})
+				return
+			}
+		}
 		c.HTML(http.StatusOK, "reservasi.html", nil)
 	})
 
 	r.POST("/reservasi", func(c *gin.Context) {
 		var data databases.Reservasi
+
+		if err := jwt.VerifyToken(c); err != nil {
+			if err == jwt.ErrMissingToken {
+				c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak ditemukan"})
+			} else {
+				c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak valid"})
+			}
+			return
+		}
 
 		// Bind data dari formulir HTML ke struct
 		if err := c.Bind(&data); err != nil {

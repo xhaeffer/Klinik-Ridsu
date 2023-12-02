@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="templates/css/login.css">
+    <title>Cek Reservasi - Klinik RIDSU</title>
     <link rel="stylesheet" type="text/css" href="templates/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="templates/css/cekreservasi.css">
     <script src="templates/scripts/hamburg_menu.js"></script>
+    <script src="templates/scripts/script.js"></script>
 </head>
 <body>
     <div class="navbarr">
@@ -27,22 +28,23 @@
             </li>
         </ul>
     </div>
-    <header>
-        <h1>Klinik RIDSU Login</h1>
-    </header>
-    <div class="login-container">
-        <h2>Login</h2>
-        <form class="login-form" action="/login" method="post">
-            <input type="text" name="identifier" placeholder="No RS / NIK" required>
-            <br>
-            <input type="password" name="password" placeholder="Password" required>
-            <br>
-            <button type="submit">Login</button>
-            <br>
-            <p>Don't have an account? </p>
-        	<a href="/register" class="btn">Register</button></a>
 
+    <header>
+        <h1>Klinik RIDSU</h1>
+    </header>
+    <div class="cek-reservasi-container">
+        <h2>Cek Reservasi</h2>
+        <form class="cek-reservasi-form" action="proses_cek_reservasi.php" method="post">
+            <label for="reservation_id">Nomor Reservasi:</label>
+            <input type="text" id="reservation_id" name="reservation_id" required>
+            <br>
+            <label for="NIK">Masukan NIK</label>
+            <input type="text" id="NIK" name="NIK" required>
+            <br>
+            <button type="submit">Cek Reservasi</button>
         </form>
     </div>
+    
+
 </body>
 </html>
