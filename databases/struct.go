@@ -31,9 +31,13 @@ type JadwalDokter struct {
 }
 
 type User struct {
-	NoRS     int `gorm:"primaryKey;autoIncrement" json:"no_rs"`
-	NIK      string    `gorm:"column:nik" json:"nik"`
-	Password string `gorm:"column:password" json:"-"`
+	NoRS     	 int 	`gorm:"primaryKey;autoIncrement" json:"no_rs"`
+	NIK      	 string `gorm:"column:nik" json:"nik"`
+	Password 	 string `gorm:"column:password" json:"-"`
+	Nama         string `gorm:"column:nama" json:"nama"`
+	TglLahir     string `gorm:"column:tgl_lahir" json:"tgl_lahir"`
+	JenisKelamin string `gorm:"column:jenis_kelamin" json:"jenis_kelamin"`
+
 }
 
 func (Reservasi) TableName() string {
