@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import './css/About.css';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import './About.css';
 
 const AboutUs = () => {
   return (
@@ -9,7 +9,7 @@ const AboutUs = () => {
       <Header />
 
       <div className="gambar">
-        <img src={require('./img/klinik.jpg')} alt="Klinik Ridsu" width="800" />
+        <img src={require('../../assets/images/klinik.jpg')} alt="Klinik Ridsu" width="800" />
       </div>
 
       <section id="informasi-rumah-sakit">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import './css/Header.css';
+import './Header.css';
 
 function Header () {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -57,7 +57,7 @@ function Header () {
     <ul className="menu-list" id="menu-list">
       <div id="user-info" style={{ display: isLoggedIn ? 'block' : 'none' }}>
         {/* USER INFO GOES HERE */}
-        <img src= {require('./img/kosong.jpeg')} id="profile-image" alt="" />
+        <img src= {require('../../assets/images/kosong.jpeg')} id="profile-image" alt="" />
         <div className="user-text">
           <p id="greeting">{getGreeting()}</p>
           <p id="user-name">{isLoggedIn ? 'Nama Pengguna' : 'Anda belum login'}</p>

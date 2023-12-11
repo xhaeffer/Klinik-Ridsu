@@ -1,8 +1,8 @@
 // Home.js
 import React, { useEffect } from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import './css/Home.css';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import './Home.css';
 
 const Home = () => {
   useEffect(() => {
@@ -29,7 +29,7 @@ const Home = () => {
       <div className="head">
         <h1>Selamat Datang di Klinik Ridsu</h1>
         <p>Tempat Terbaik untuk Pelayanan Kesehatan</p>
-        <img style={{ width: '500px' }} src={require('./img/klinik.jpg')} alt=""/>
+        <img style={{ width: '500px' }} src={require('../../assets/images/klinik.jpg')} alt=""/>
       </div>
 
       <section id="Informasi">
@@ -37,7 +37,7 @@ const Home = () => {
         <div className="isi" id="animated-div">
           <div className="dalam">
             <h2>Klinik Terbaik</h2>
-            <img style={{ width: '500px' }} src={require('./img/tempat.jpg')} alt="" />
+            <img style={{ width: '500px' }} src={require('../../assets/images/tempat.jpg')} alt="" />
             <p>
               Klinik Ridsu adalah pilihan terbaik untuk layanan kesehatan yang berkualitas dan komprehensif. Dengan
               komitmen untuk memberikan perawatan yang canggih dan perhatian yang personal, klinik kami menjadi destinasi
@@ -47,7 +47,7 @@ const Home = () => {
 
           <div className="dalam">
             <h2>Dokter Kompeten</h2>
-            <img style={{ width: '500px' }} src={require('./img/bagus.jpeg')} alt="" />
+            <img style={{ width: '500px' }} src={require('../../assets/images/bagus.jpeg')} alt="" />
             <p>
               Tim profesional kami terdiri dari dokter dan tenaga kesehatan berpengalaman yang didedikasikan untuk
               memberikan perawatan holistik kepada setiap pasien. Dengan fasilitas modern dan peralatan medis terkini,

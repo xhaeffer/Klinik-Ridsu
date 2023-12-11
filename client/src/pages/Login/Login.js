@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Header from './Header'; // Sesuaikan dengan path yang sesuai
-import Footer from './Footer'; // Sesuaikan dengan path yang sesuai
-import './css/Login.css'; // Sesuaikan dengan path yang sesuai
+import Header from '../../components/Header/Header'; // Sesuaikan dengan path yang sesuai
+import Footer from '../../components/Footer/Footer'; // Sesuaikan dengan path yang sesuai
+import './Login.css'; // Sesuaikan dengan path yang sesuai
 
 function Login() {
   const [identifier, setIdentifier] = useState('');

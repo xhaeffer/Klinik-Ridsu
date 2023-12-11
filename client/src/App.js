@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './components/Home';
-import About from './components/About';
-import Jadwal from './components/Jadwal';
-// import Reservasi from './components/Reservasi';
-import CekReservasi from './components/CekReservasi';
-import Login from './components/Login';
+import Home from './pages/Home/Home';
+import About from './pages/About/About';
+import Jadwal from './pages/Jadwal/Jadwal';
+// import Reservasi from './pages/Reservasi/Reservasi';
+import CekReservasi from './pages/CekReservasi/CekReservasi';
+import Login from './pages/Login/Login';
 
 function App() {
   return (

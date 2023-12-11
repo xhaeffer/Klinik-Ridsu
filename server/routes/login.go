@@ -20,9 +20,9 @@ type LoginRequest struct {
 }
 
 func Login(r *gin.Engine, db *gorm.DB) {
-	r.GET("/login", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "login.html", nil)
-	})
+	// r.GET("/login", func(c *gin.Context) {
+	// 	c.HTML(http.StatusOK, "login.html", nil)
+	// })
 
 	r.POST("/login", func(c *gin.Context) {
 		var loginRequest LoginRequest

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Header from './Header'; // Gantilah dengan path yang sesuai
-import Footer from './Footer';
-import './css/CekReservasi.css';
+import Header from '../../components/Header/Header'; // Gantilah dengan path yang sesuai
+import Footer from '../../components/Footer/Footer';
+import './CekReservasi.css';
 
 function CekReservasi() {
   const [noRS, setNoRS] = useState('');

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import './css/Jadwal.css';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import './Jadwal.css';
 
 const JadwalDokter = () => {
   const [data, setData] = useState([]);
