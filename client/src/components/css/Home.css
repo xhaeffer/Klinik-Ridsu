@@ -1,0 +1,78 @@
+/* Home.css */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #F9F7F7;
+  height: 150vh;
+}
+
+.head {
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #DBE2EF;
+}
+
+.head h1 {
+  margin-bottom: 10px;
+  padding-top: 50px;
+}
+
+.head p {
+  color: #555;
+}
+
+.isi {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-around;
+}
+
+.dalam {
+  width: 45%;
+  margin: 10px;
+  padding: 10px;
+  text-align: justify; 
+  box-sizing: border-box;
+}
+
+.dalam p {
+  text-align: justify;
+}
+
+.dalam h2 {
+  text-align: center;
+  color: #000;
+}
+
+.dalam img {
+  text-align: center;
+  max-width: 100%; /* Menjamin gambar tidak melebihi lebar elemen yang mengandungnya */
+  height: auto; /* Memastikan rasio aspek gambar tetap terjaga */
+  display: block; /* Tambahkan properti ini agar gambar menjadi elemen block dan tidak menimbulkan spasi di bawahnya */
+  margin: 0 auto;
+}
+
+#Informasi {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+#Informasi h1 {
+  color: #000000;
+  margin-bottom: -70px;
+}
+
+.isi p {
+  text-align: justify;
+  color: #555;
+}
+
+/* Media queries untuk responsivitas */
+@media screen and (max-width: 768px) {
+  .dalam {
+    width: 80%; /* Mengubah lebar card menjadi 100% pada layar berukuran kecil */
+  }
+}
