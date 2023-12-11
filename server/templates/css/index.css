@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #F9F7F7;
+    height: 150vh;
+}
+
+.header {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #DBE2EF;
+}
+
+.header h1 {
+    margin-bottom: 10px;
+    padding-top: 50px;
+}
+
+.header p {
+    color: #555;
+}
+
+.isi {
+    display: flex;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.isi.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dalam {
+    width: 50%;
+    margin: 20px;
+    padding: 20px;
+}
+
+.dalam p {
+    text-align: justify;
+}
+
+.dalam h2 {
+    text-align: center;
+}
+
+.btn-isi {
+    margin: 20px;
+    width: 50%;
+}
+
+.btn-isi p {
+    text-align: justify;
+}
+
+.isigambar {
+    text-align: center;
+}
+
+#Informasi {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#Informasi h1 {
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+.isi p {
+    text-align: justify;
+    color: #555;
+}
+
+footer {
+    background-color: #3F72AF;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
