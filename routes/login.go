@@ -28,41 +28,41 @@ func Login(r *gin.Engine, db *gorm.DB) {
 		var loginRequest LoginRequest
 
 		if err := c.ShouldBind(&loginRequest); err != nil {
-			c.HTML(http.StatusBadRequest, "login.html", gin.H{"error": "Invalid request payload"})
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request payload"})
 			return
 		}
 
 		var user databases.User
 		if err := db.Where("no_rs = ? OR nik = ?", checkIdentifier(strconv.Itoa(loginRequest.Identifier)), checkIdentifier(strconv.Itoa(loginRequest.Identifier))).First(&user).Error; err != nil {
-			c.HTML(http.StatusUnauthorized, "login.html", gin.H{"error": "No RS / NIK / Password anda salah"})
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "No RS / NIK / Password anda salah"})
 			return
 		}
 
 		if !verifyPassword(loginRequest.Password, user.Password) {
-			c.HTML(http.StatusUnauthorized, "login.html", gin.H{"error": "No RS / NIK / Password anda salah"})
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "No RS / NIK / Password anda salah"})
 			return
 		}
 
 		err := session.SetSession(c.Writer, c.Request, "user", user)
 		if err != nil {
-			c.HTML(http.StatusInternalServerError, "login.html", gin.H{"error": "Gagal menyimpan sesi"})
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Gagal menyimpan sesi"})
 			return
 		}
 
 		token, err := session.GenerateToken()
 		if err != nil {
-			c.HTML(http.StatusInternalServerError, "login.html", gin.H{"error": "Failed to generate token"})
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate token"})
 			return
 		}
 
 		tokenString, ok := token["token"].(string)
 		if !ok {
-			c.HTML(http.StatusInternalServerError, "login.html", gin.H{"error": "Failed to get token string"})
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get token string"})
 			return
 		}
 
 		c.SetCookie("token", tokenString, 3600, "/", "localhost", false, true)
-		c.HTML(http.StatusOK, "login.html", gin.H{
+		c.JSON(http.StatusOK, gin.H{
 			"message": "Login successful",
 			"token":   token,
 		})

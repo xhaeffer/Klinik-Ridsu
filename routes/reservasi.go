@@ -25,7 +25,7 @@ func Reservasi (r *gin.Engine, db *gorm.DB) {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Gagal menyimpan data ke database"})
 			return
 		} else {
-			c.HTML(http.StatusOK, "reservasi.html", gin.H{"message": "Reservasi berhasil disimpan", "data": data})
+			c.JSON(http.StatusOK, gin.H{"message": "Reservasi berhasil disimpan", "data": data})
 		}
 	})
 

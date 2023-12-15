@@ -8,7 +8,8 @@ import (
 var db *gorm.DB
 
 func InitDatabase() *gorm.DB {
-	dsn := "xhaeffer:#Cobacoba123@tcp(xhaeffer.me:3306)/klinik"
+	// dsn := "xhaeffer:hahalol123@tcp(xhaeffer.me:11095)/klinik"
+	dsn := "xhaeffer:hahalol123@tcp(localhost:3306)/klinik"
 	var err error
 	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
