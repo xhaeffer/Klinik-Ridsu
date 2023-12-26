@@ -1,7 +1,6 @@
 package session
 
 import (
-//	"encoding/base64"
 	"net/http"
 	"errors"
 	"time"
@@ -20,7 +19,7 @@ func GenerateToken() (map[string]interface{}, error) {
     token := jwt.New(jwt.SigningMethodHS256)
     claims := token.Claims.(jwt.MapClaims)
 
-    expirationTime := time.Now().Add(time.Hour * 24)
+    expirationTime := time.Now().Add(time.Hour)
     claims["exp"] = expirationTime.Unix()
 
     tokenString, err := token.SignedString(secretKey)
@@ -33,7 +32,6 @@ func GenerateToken() (map[string]interface{}, error) {
     additionalInfo := map[string]interface{}{
         "token":       tokenString,
         "expires_in":  expiresIn.String(),
-        "user_id":     "admin",
     }
     return additionalInfo, nil
 }
@@ -55,11 +53,16 @@ func ExtractToken(c *gin.Context) error {
 	return nil
 }
 
+func ClearToken(c *gin.Context) {
+	c.SetCookie("token", "", -1, "/", "localhost", false, true)
+	// c.SetCookie("token", "", -1, "/", "xhaeffer.me:11092", false, true)
+}
+
 func VerifyToken() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		if err := ExtractToken(c); err != nil {
 			if err == ErrMissingToken {
-				c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak ditemukan, Silahkan Login terlebih dahulu!"})
+				c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak ditemukan, Silahkan login terlebih dahulu!"})
 			} else {
 				c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak valid, Silahkan login ulang!"})
 			}

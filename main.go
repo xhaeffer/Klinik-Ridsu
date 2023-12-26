@@ -5,7 +5,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 	"KlinikRidsu/databases"
-	"KlinikRidsu/routes"
+	"KlinikRidsu/api"
+	"KlinikRidsu/auth"
 )
 
 func init() {
@@ -13,13 +14,9 @@ func init() {
 }
 
 func Routes(r *gin.Engine, db *gorm.DB) {
-	routes.Login(r, db)
-	// routes.Register(r, db)
-	// routes.Index(r)
-	// routes.About(r)
-	routes.Jadwal(r, db)
-	routes.Reservasi(r, db)
-	// routes.CekReservasi(r)
+	auth.SetupRoutes(r, db)
+	api.Jadwal(r, db)
+	api.Reservasi(r, db)
 }
 
 func main() {
@@ -27,15 +24,14 @@ func main() {
 	r := gin.Default()
 
 	config := cors.DefaultConfig()
-	config.AllowOrigins = []string{"http://localhost:3000"} // Update with your React app's URL
+	config.AllowOrigins = []string{
+		"http://xhaeffer.me:11092",
+		"http://localhost:3000",
+	}
+	config.AllowCredentials = true
 	config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE"}
 	r.Use(cors.New(config))
-
 	r.Use(gin.Recovery())
-	// r.LoadHTMLGlob("templates/*.html")
-	// r.Static("/templates/css", "./templates/css")
-	// r.Static("/templates/scripts", "./templates/scripts")
-	// r.Static("/templates/img", "./templates/img")
 	Routes(r, db)
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }

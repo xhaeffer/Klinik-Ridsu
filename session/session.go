@@ -1,8 +1,8 @@
 package session
 
 import (
+	"encoding/gob"
 	"net/http"
-	"fmt"
 
 	"github.com/gorilla/sessions"
 )
@@ -12,32 +12,41 @@ var store *sessions.CookieStore
 func init() {
 	secretKey := []byte("klinikridsu")
 	store = sessions.NewCookieStore(secretKey)
+	store.Options.HttpOnly = false
+	gob.Register(map[string]interface{}{})
 }
 
-// SetSession mengatur nilai pada sesi
-func SetSession(w http.ResponseWriter, r *http.Request, key string, value interface{}) error {
-	session, err := store.Get(r, "sesi_pengguna")
+func SetSession(w http.ResponseWriter, r *http.Request, key string, userData map[string]interface{}) error {
+	session, err := store.Get(r, "user")
 	if err != nil {
 		return err
 	}
 
-	session.Values[key] = value
-	session.Save(r, w)
-	fmt.Println("Session values:", session.Values)
+	if _, exists := session.Values[key]; !exists {
+		session.Values[key] = make(map[string]interface{})
+	}
 
+	userSession := session.Values[key].(map[string]interface{})
+	for key, value := range userData {
+		userSession[key] = value
+	}
 
+	session.Options.MaxAge = 3600
+	
+	err = session.Save(r, w)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
-// GetSession mendapatkan nilai dari sesi
-func GetSession(r *http.Request, key string) interface{} {
-	session, _ := store.Get(r, "sesi_pengguna")
-	return session.Values[key]
+func GetSession(r *http.Request) map[interface{}]interface{} {
+	session, _ := store.Get(r, "user")
+	return session.Values
 }
 
-// ClearSession membersihkan sesi
 func ClearSession(w http.ResponseWriter, r *http.Request) {
-	session, _ := store.Get(r, "sesi_pengguna")
+	session, _ := store.Get(r, "user")
 	session.Options.MaxAge = -1
 	session.Save(r, w)
 }
