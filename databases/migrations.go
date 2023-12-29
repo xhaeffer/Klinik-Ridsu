@@ -5,7 +5,10 @@ type Reservasi struct {
 	TglKunjungan string `gorm:"column:tgl_kunjungan" json:"tgl_kunjungan"`
 	Nama         string `gorm:"column:nama" json:"nama"`
 	NoRS         int    `gorm:"column:no_rs" json:"no_rs"`
+	Poli         string `gorm:"column:poli" json:"poli"`
+	Dokter       string `gorm:"column:dokter" json:"dokter"`
 	Pembayaran   string `gorm:"column:pembayaran" json:"pembayaran"`
+	NoAsuransi   int    `gorm:"column:no_asuransi" json:"no_asuransi"`
 	NIK          int    `gorm:"column:nik" json:"nik"`
 	TglLahir     string `gorm:"column:tgl_lahir" json:"tgl_lahir"`
 	Email        string `gorm:"column:email" json:"email"`

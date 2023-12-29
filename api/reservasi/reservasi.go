@@ -1,9 +1,10 @@
-package api
+package reservasi
 
 import (
 	"net/http"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
+	
 	"KlinikRidsu/databases"
 	"KlinikRidsu/session"
 )
@@ -32,7 +33,13 @@ func Reservasi (r *gin.Engine, db *gorm.DB) {
 		if err := db.Model(&databases.Reservasi{}).Where("id_reservasi = ?", id).Find(&data).Error; err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Gagal mengambil data!"})
 			return
-		}		
+		}
+		
+		if len(data) == 0 {
+			c.JSON(http.StatusNotFound, gin.H{"error": "Data tidak ditemukan!"})
+			return
+		}
+
 		c.JSON(http.StatusOK, data)
 	})
 
@@ -78,7 +85,13 @@ func Reservasi (r *gin.Engine, db *gorm.DB) {
 		if err := db.Model(&databases.Reservasi{}).Where("no_rs = ?", no_rs).Find(&data).Error; err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Gagal mengambil data!"})
 			return
-		}		
+		}
+		
+		if len(data) == 0 {
+			c.JSON(http.StatusNotFound, gin.H{"error": "Data tidak ditemukan!"})
+			return
+		}
+		
 		c.JSON(http.StatusOK, data)
 	})
 }

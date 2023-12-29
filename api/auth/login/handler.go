@@ -2,7 +2,6 @@ package login
 
 import (
 	"net/http"
-	"time"
 	"KlinikRidsu/databases"
 	"KlinikRidsu/session"
 
@@ -11,15 +10,12 @@ import (
 )
 
 func loginHandler(c *gin.Context, db *gorm.DB, user databases.User) {
-	expirationTime := time.Now().Add(time.Hour)
-	expiresIn := time.Until(expirationTime)
 	err := session.SetSession(c.Writer, c.Request, "user", map[string]interface{}{
-		"nors":          user.NoRS,
+		"no_rs":         user.NoRS,
 		"nik":           user.NIK,
 		"nama":          user.Nama,
 		"tgl_lahir":     user.TglLahir,
 		"jenis_kelamin": user.JenisKelamin,
-		"expires_in": expiresIn.String(),
 	})
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Gagal menyimpan sesi!"})
