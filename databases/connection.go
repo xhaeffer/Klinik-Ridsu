@@ -1,21 +1,38 @@
 package databases
 
 import (
+	"fmt"
+	"log"
+	"KlinikRidsu/configs"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
 var db *gorm.DB
 
-func InitDatabase() *gorm.DB {
-	// dsn := "xhaeffer:hahalol123@tcp(xhaeffer.me:11095)/klinik"
-	// dsn := "xhaeffer:hahalol123@tcp(172.16.9.97:97)/klinik"
-	dsn := "xhaeffer:#Cobacoba123@tcp(localhost:3306)/klinik"
+func InitDatabase(dbName string) *gorm.DB {
+	configs.DbConfig()
 
-	var err error
-	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	dbConfigs := configs.ReadDatabaseConfigs()
+	config, err := configs.FindDatabaseConfig(dbConfigs, dbName)
 	if err != nil {
-		panic("Gagal terhubung ke database!")
+		log.Fatalf("Database configuration not found: %v", err)
+	}
+
+	dsn := fmt.Sprintf(
+		"%s:%s@tcp(%s:%d)/%s",
+		config.Username,
+		config.Password,
+		config.Host,
+		config.Port,
+		config.DbName,
+	)
+
+	var errConnect error
+	db, errConnect = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	if errConnect != nil {
+		log.Fatalf("Failed to connect to the database: %v", errConnect)
 	}
 
 	db.Table(new(Reservasi).TableName()).AutoMigrate(&Reservasi{})
@@ -25,3 +42,4 @@ func InitDatabase() *gorm.DB {
 
 	return db
 }
+

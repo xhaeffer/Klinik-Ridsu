@@ -3,6 +3,7 @@ package session
 import (
 	"encoding/gob"
 	"net/http"
+	"KlinikRidsu/configs"
 
 	"github.com/gorilla/sessions"
 )
@@ -10,7 +11,7 @@ import (
 var store *sessions.CookieStore
 
 func init() {
-	secretKey := []byte("klinikridsu")
+	secretKey = []byte(configs.GetSessionSecretKey())
 	store = sessions.NewCookieStore(secretKey)
 	store.Options.HttpOnly = false
 	gob.Register(map[string]interface{}{})

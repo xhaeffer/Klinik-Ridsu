@@ -2,7 +2,7 @@ package login
 
 import (
 	"fmt"
-	"KlinikRidsu/hash"
+	"KlinikRidsu/utils"
     "KlinikRidsu/session"
 
 	"github.com/gin-gonic/gin"
@@ -18,7 +18,7 @@ func isUserLoggedIn(c *gin.Context) bool {
 
 func checkIdentifier(identifier string) string {
     if len(identifier) == 16 {
-        hashed, err := hash.HashNIK(identifier)
+        hashed, err := utils.HashNIK(identifier)
         if err != nil {
             return identifier
         }

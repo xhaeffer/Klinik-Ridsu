@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 
 	"KlinikRidsu/databases"
-	"KlinikRidsu/hash"
+	"KlinikRidsu/utils"
 )
 
 type RegisterRequest struct {
@@ -24,13 +24,13 @@ func Register(r *gin.Engine, db *gorm.DB) {
 			return
 		}
 
-		hashedNIK, err := hash.HashNIK(registerRequest.NIK)
+		hashedNIK, err := utils.HashNIK(registerRequest.NIK)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to hash NIK!"})
 			return
 		}
 
-		hashedPassword, err := hash.HashPassword(registerRequest.Password)
+		hashedPassword, err := utils.HashPassword(registerRequest.Password)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to hash password!"})
 			return

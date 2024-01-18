@@ -1,0 +1,23 @@
+databases:
+  - name: local       # Anything!
+    username: test
+    password: "test"
+    host: localhost
+    port: 3306
+    dbname: test
+
+  - name: 
+    username: 
+    password: ""
+    host: 
+    port: 
+    dbname: 
+
+recaptchaKey:
+  secretKey: "YOUR-SECRET-KEY"
+
+session:
+  secretKey: "YOUR-SECRET-KEY"
+
+jwt:
+  secretKey: "YOUR-SECRET-KEY"

@@ -1,8 +1,8 @@
 package logout
 
 import (
-	"KlinikRidsu/session"
 	"net/http"
+	"KlinikRidsu/session"
 
 	"github.com/gin-gonic/gin"
 )

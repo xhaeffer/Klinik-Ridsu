@@ -1,15 +1,23 @@
 package login
 
 import (
-	"net/http"
 	"KlinikRidsu/databases"
 	"KlinikRidsu/session"
+	"net/http"
 
+	"github.com/dpapathanasiou/go-recaptcha"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
 
 func loginHandler(c *gin.Context, db *gorm.DB, user databases.User) {
+	recaptchaResponse := c.PostForm("recaptchaResponse")
+
+	if result, err := recaptcha.Confirm(c.ClientIP(), recaptchaResponse); err != nil || !result {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Verifikasi reCAPTCHA gagal"})
+		return
+	}
+	
 	err := session.SetSession(c.Writer, c.Request, "user", map[string]interface{}{
 		"no_rs":         user.NoRS,
 		"nik":           user.NIK,

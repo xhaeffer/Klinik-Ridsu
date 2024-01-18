@@ -5,12 +5,14 @@ import (
 	"errors"
 	"time"
 
+	"KlinikRidsu/configs"
+
 	"github.com/gin-gonic/gin"
 	"github.com/dgrijalva/jwt-go"
 )
 
 var (
-	secretKey = []byte("klinikridsu")
+	secretKey = configs.GetJWTSecretKey()
 	ErrMissingToken = errors.New("missing JWT token")
 	ErrTokenInvalid = errors.New("invalid JWT token")
 )

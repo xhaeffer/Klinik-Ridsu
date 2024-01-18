@@ -1,18 +1,24 @@
 package main
 
 import (
-	"github.com/gin-contrib/cors"
-	"github.com/gin-gonic/gin"
 	"KlinikRidsu/databases"
 	"KlinikRidsu/api"
+	"KlinikRidsu/configs"
+
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
 )
 
 func init() {
 	gin.SetMode(gin.DebugMode)
+
+    configs.RecaptchaConfig()
+	configs.JWTConfig()
+	configs.SessionConfig()
 }
 
 func main() {
-	db := databases.InitDatabase()
+	db := databases.InitDatabase("local")
 	r := gin.Default()
 
 	config := cors.DefaultConfig()
@@ -27,5 +33,5 @@ func main() {
 	r.Use(gin.Recovery())
 
 	api.API(r, db)
-	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	r.Run()
 }

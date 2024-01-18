@@ -1,5 +1,8 @@
 # Klinik Ridsu's Online Reservation System
 
+## How To...
+Coming Soon!
+
 ## About Project
 This repository hosts the server-side code for Klinik Ridsu's Online Reservation System, providing the backend logic for the seamless booking and appointment management functionalities of the platform.
 

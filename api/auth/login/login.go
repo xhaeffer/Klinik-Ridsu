@@ -40,6 +40,4 @@ func Login(r *gin.Engine, db *gorm.DB) {
 
 		loginHandler(c, db, user)
 	})
-
-	
 }
