@@ -10,3 +10,5 @@ The project encompasses various features, including an authentication system, se
 
 ## About Klinik Ridsu
 Klinik Ridsu's Online Reservation System is a web-based platform designed to streamline the process of booking appointments for medical services. This system aims to provide a convenient and efficient way for patients to schedule their visits to the clinic.
+
+boleh saya corat-coret ?
